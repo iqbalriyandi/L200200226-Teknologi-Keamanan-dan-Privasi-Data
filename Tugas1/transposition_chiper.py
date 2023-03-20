@@ -1,24 +1,33 @@
-def transposition_cipher(key, plaintext):
-    # inisialisasi variabel
-    num_columns = len(key)
-    num_rows = -(-len(plaintext) // num_columns)
-    matrix = [''] * num_columns
+import math
 
-    for col in range(num_columns):
-        for row in range(num_rows):
-            index = col + row * num_columns
-            if index < len(plaintext):
-                matrix[col] += plaintext[index]
-            else:
-                matrix[col] += " "
+def encrypt(key, plaintext):
+    ciphertext = [''] * key
+    for column in range(key):
+        index = column
+        while index < len(plaintext):
+            ciphertext[column] += plaintext[index]
+            index += key
+    return ''.join(ciphertext)
 
-    ordered_matrix = [""] * num_columns
-    for i, char in enumerate(key):
-        index = ord(char) - ord('0') - 1
-        ordered_matrix[index] = matrix[i]
-    ciphertext = "".join(ordered_matrix)
 
-    return ciphertext
+def decrypt(key, ciphertext):
+    num_of_columns = math.ceil(len(ciphertext) / key)
+    num_of_rows = key
+    num_of_shaded_boxes = (num_of_columns * num_of_rows) - len(ciphertext)
+    plaintext = [''] * num_of_columns
+    column = row = 0
+    for symbol in ciphertext:
+        plaintext[column] += symbol
+        column += 1
+        if (column == num_of_columns) or (column == num_of_columns - 1 and row >= num_of_rows - num_of_shaded_boxes + 1):
+            column = 0
+            row += 1
+    return ''.join(plaintext)
 
-ciphertext = transposition_cipher("3142", "iqbal")
-print(ciphertext)
+message = 'IQBAL RIYANDI'
+key = 7
+encrypted_message = encrypt(key, message)
+decrypted_message = decrypt(key, encrypted_message)
+print('Pesan Asli: %s' % message)
+print('Pesan Terenkripsi: %s' % encrypted_message)
+print('Pesan Terdekripsi: %s' % decrypted_message)
