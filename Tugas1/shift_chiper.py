@@ -29,3 +29,5 @@ print("Pesan asli         :", plain_text)
 print("Kunci              :", key)
 print("Pesan terenkripsi  :", cipher_text)
 print("Pesan terdekripsi  :", decrypt(cipher_text, key))
+
+# plain text tidak dapat terenkripsi dikarenakan key=26 (2 digit nim terakhir)
