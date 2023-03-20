@@ -1,28 +1,44 @@
-def vigenere_cipher(key, plaintext):
-    plaintext = "".join([chr(int(digit) + 97) for digit in plaintext])
-
-    ciphertext = ""
+def vigenere_encrypt(plain_text, key):
+    """Mengenkripsi pesan dengan metode Vigenere Cipher"""
+    cipher_text = ""
     key_index = 0
+    for char in plain_text:
+        if char.isalpha():
+            # Jika karakter adalah huruf, maka enkripsi dengan aturan Vigenere Cipher
+            char_value = ord(char.lower()) - 97
+            key_value = int(key[key_index]) - 1
+            new_char_value = (char_value + key_value) % 26
+            new_char = chr(new_char_value + 97)
+            key_index = (key_index + 1) % len(key)
+        else:
+            # Jika karakter bukan huruf, maka tidak dienkripsi
+            new_char = char
+        cipher_text += new_char
+    return cipher_text
 
-    for char in plaintext:
-        if not char.isalpha():
-            ciphertext += char
-            continue
+def vigenere_decrypt(cipher_text, key):
+    """Mendekripsi pesan dengan metode Vigenere Cipher"""
+    plain_text = ""
+    key_index = 0
+    for char in cipher_text:
+        if char.isalpha():
+            # Jika karakter adalah huruf, maka dekripsi dengan aturan Vigenere Cipher
+            char_value = ord(char.lower()) - 97
+            key_value = int(key[key_index]) - 1
+            new_char_value = (char_value - key_value) % 26
+            new_char = chr(new_char_value + 97)
+            key_index = (key_index + 1) % len(key)
+        else:
+            # Jika karakter bukan huruf, maka tidak didekripsi
+            new_char = char
+        plain_text += new_char
+    return plain_text
 
-        key_char = key[key_index % len(key)]
-        key_index += 1
-        key_index = key_index % len(key)
-        key_offset = ord(key_char) - 97
-
-        char_offset = ord(char.lower()) - 97
-        new_offset = (char_offset + key_offset) % 26
-
-        new_char = chr(new_offset + 97)
-        if char.isupper():
-            new_char = new_char.upper()
-        ciphertext += new_char
-
-    return ciphertext
-
-ciphertext = vigenere_cipher("secret", "iqbal")
-print(ciphertext)
+# Contoh penggunaan
+plain_text = "IQBAL RIYANDI"
+key = "226"
+cipher_text = vigenere_encrypt(plain_text, key)
+print("Pesan asli         :", plain_text)
+print("Kunci              :", key)
+print("Pesan terenkripsi  :", cipher_text)
+print("Pesan terdekripsi  :", vigenere_decrypt(cipher_text, key))
