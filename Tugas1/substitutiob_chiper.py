@@ -18,5 +18,5 @@ def substitution_cipher(key, plaintext):
 
     return ciphertext
 
-ciphertext = substitution_cipher("phqgiumeaylnofdxjkrcvstzwb", "gandhi")
+ciphertext = substitution_cipher("phqgiumeaylnofdxjkrcvstzwb", "iqbal")
 print(ciphertext)
