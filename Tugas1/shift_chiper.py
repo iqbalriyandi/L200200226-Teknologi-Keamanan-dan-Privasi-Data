@@ -22,7 +22,7 @@ def decrypt(cipher_text, key):
     return encrypt(cipher_text, -key)
 
 # Contoh penggunaan
-plain_text = "PESAN RAHASIA"
+plain_text = "IQBAL RIYANDI"
 key = 26
 cipher_text = encrypt(plain_text, key)
 print("Pesan asli         :", plain_text)
