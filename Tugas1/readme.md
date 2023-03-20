@@ -1,4 +1,4 @@
-# Teknologi Kemanan dan Privasi Data Tugas 1
+# Teknologi Keamanan dan Privasi Data Tugas 1
 
 ### Tugas Membuat Aplikasi Kriptografi
 
