@@ -1,8 +1,7 @@
 # Teknologi Kemanan dan Privasi Data Tugas 1
 
-### Aplikasi Kriptografi
+### Tugas Membuat Aplikasi Kriptografi
 
----
 
 ## Nama : Iqbal Riyandi
 
